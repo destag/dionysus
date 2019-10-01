@@ -1,6 +1,7 @@
 from enum import Enum
 from pathlib import Path
 from definitions import ROOT_DIR
+from typing import Union
 
 
 class DataFolder(Enum):
@@ -10,10 +11,10 @@ class DataFolder(Enum):
     IMAGE_DATA = APP_DATA + 'image_data'
 
     @staticmethod
-    def generate_rel_path(path):
+    def generate_rel_path(path: str) -> Path:
         if not path:
-            return Path.cwd().as_uri()
+            return Path.cwd()
 
-        path = path.split('/')
-        path.insert(0, ROOT_DIR)
-        return Path(*path).resolve()
+        path_parts = path.split('/')
+        path_parts.insert(0, ROOT_DIR)
+        return Path(*path_parts).resolve()

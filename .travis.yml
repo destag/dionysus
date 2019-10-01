@@ -6,11 +6,12 @@ python:
 
 install:
     - pip install -r requirements.txt
-    - pip install coveralls pytest-cov
+    - pip install coveralls pytest-cov mypy
 
 
 # command to run tests
 script:
+    - mypy --ignore-missing-imports .
     - pytest --cov
 
 after_success: coveralls

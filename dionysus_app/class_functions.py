@@ -4,6 +4,7 @@ Functions for creating, editing, dealing with classes.
 
 import time
 from pathlib import Path
+from typing import Optional
 
 from dionysus_app.UI_functions import clean_for_filename, input_is_essentially_blank
 from dionysus_app.data_folder import DataFolder
@@ -13,7 +14,7 @@ CLASS_REGISTRY_PATH = DataFolder.generate_rel_path(DataFolder.CLASS_REGISTRY.val
 CLASSLIST_DATA_FILE_TYPE = '.cld'
 
 
-def create_classlist():
+def create_classlist() -> None:
 
     classlist_name = take_classlist_name_input()  # TODO: Option to cancel creation at class name entry stage
 
@@ -21,7 +22,7 @@ def create_classlist():
     create_classlist_data(classlist_name)
 
 
-def create_classlist_data(classlist_name):  # TODO: fix path composition
+def create_classlist_data(classlist_name: str) -> None:  # TODO: fix path composition
     data_file = classlist_name + CLASSLIST_DATA_FILE_TYPE
     classlist_data_path = CLASSLIST_DATA_PATH.joinpath(classlist_name, data_file)
 
@@ -48,7 +49,7 @@ def create_classlist_data(classlist_name):  # TODO: fix path composition
         time.sleep(2)
 
 
-def blank_class_dialogue():
+def blank_class_dialogue() -> bool:
     while True:
         choice = input("Do you want to create an empty class? y/n")
         if choice.upper() == 'Y':
@@ -59,7 +60,7 @@ def blank_class_dialogue():
         print('Please enter y for yes to create empty class, or n to return to student input.')
 
 
-def take_class_data_input():
+def take_class_data_input() -> str:
     class_data = ''
     while True:
 
@@ -73,7 +74,7 @@ def take_class_data_input():
     return class_data
 
 
-def take_student_name_input(class_data):
+def take_student_name_input(class_data: str) -> str:
     while True:
         student_name = input("Enter student name, or 'end': ")
         if input_is_essentially_blank(student_name):  # Do not allow blank input TODO: include dash, underscore
@@ -86,7 +87,7 @@ def take_student_name_input(class_data):
         return student_name
 
 
-def take_student_avatar(student_name):
+def take_student_avatar(student_name: str) -> Optional[str]:
     print(f'Load avatar image for {student_name}.')
     while True:
         avatar_file = input(r'Please paste complete filepath and name eg C:\my_folder\my_avatar.jpg or None to skip: ')
@@ -106,7 +107,7 @@ def take_student_avatar(student_name):
     return avatar_filename
 
 
-def setup_class(classlist_name):  # TODO: change name because of class with python 'class' keyword?
+def setup_class(classlist_name: str) -> None:  # TODO: change name because of class with python 'class' keyword?
     """
     Setup class data storage file structure.
     Register class in class_registry index
@@ -118,7 +119,7 @@ def setup_class(classlist_name):  # TODO: change name because of class with pyth
     register_class(classlist_name)
 
 
-def setup_class_data_storage(classlist_name):
+def setup_class_data_storage(classlist_name: str) -> None:
     """
     Setup data storage for new classes.
 
@@ -140,7 +141,7 @@ def setup_class_data_storage(classlist_name):
     graph_path.mkdir(exist_ok=True, parents=True)
 
 
-def register_class(classlist_name):
+def register_class(classlist_name: str) -> None:
     """
     Register class in class_registry file.
     Create if registry non-existent.
@@ -152,14 +153,14 @@ def register_class(classlist_name):
         class_registry.write(f'{classlist_name}\n')
 
 
-def avatar_file_exists(avatar_file):
+def avatar_file_exists(avatar_file: str) -> bool:
     return Path(avatar_file).expanduser().resolve().exists()
 
 
 # TODO: reorder/rearrange functions
 
 
-def take_classlist_name_input():
+def take_classlist_name_input() -> str:
 
     while True:
         classlist_name = input('Please enter a name for the class: ')
@@ -175,7 +176,7 @@ def take_classlist_name_input():
     return classlist_name
 
 
-def classlist_exists(classlist_name):
+def classlist_exists(classlist_name: str) -> bool:
     classlist_file_path = Path(classlist_name, CLASSLIST_DATA_FILE_TYPE)
     return CLASSLIST_DATA_PATH.joinpath(classlist_file_path).exists()
 

@@ -5,7 +5,7 @@ UI functions: user interface functions used throughout the application.
 HUNDRED_NEWLINES = '\n'*100
 
 
-def clear_screen(clear_seq=HUNDRED_NEWLINES):
+def clear_screen(clear_seq=HUNDRED_NEWLINES) -> None:
 
     print(clear_seq)
 
@@ -13,7 +13,7 @@ def clear_screen(clear_seq=HUNDRED_NEWLINES):
 # User input and string processing functions:
 
 
-def input_is_essentially_blank(subject_string: str):
+def input_is_essentially_blank(subject_string: str) -> bool:
     """
     Return True if string is empty or primarily composed of spaces, underscores,
     special characters (eg brackets, punctuation).
@@ -31,7 +31,7 @@ def input_is_essentially_blank(subject_string: str):
     return False
 
 
-def clean_for_filename(some_string: str):
+def clean_for_filename(some_string: str) -> str:
     """
     Cleans a string for use as a filename.
     eg student or classlist name
@@ -48,7 +48,7 @@ def clean_for_filename(some_string: str):
     return cleaned_filename
 
 
-def scrub_candidate_filename(dirty_string: str):
+def scrub_candidate_filename(dirty_string: str) -> str:
     """
     Cleans string of non-alpha-numeric characters, but leaves spaces, dashes,
     apostrophes, and underscores, stripping trailing spaces.

@@ -1,7 +1,9 @@
+from typing import Optional
+
 # score entry:
 
 
-def score_entry(minimum=0, maximum=100):
+def score_entry(minimum: int=0, maximum: int=100) -> Optional[float]:
     """
 
     :param minimum: int minimum allowed score
@@ -26,7 +28,7 @@ def score_entry(minimum=0, maximum=100):
         return score_float
 
 
-def test_score_entry():
+def test_score_entry() -> None:
     test_dict = {'_': None,
                  0: 0,
                  1: 1,

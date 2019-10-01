@@ -7,11 +7,11 @@ import sys
 from dionysus_app.class_functions import create_classlist
 
 
-def welcome_blurb():
+def welcome_blurb() -> None:
     print("Welcome to Dionysus - student avatar graph generator\n")
 
 
-def main_menu_options():
+def main_menu_options() -> None:
     print("Dionysus - Main menu\n")
     print("Please select an option by entering the corresponding number, and press return:\n"
           "     1. Create a classlist\n"
@@ -20,13 +20,13 @@ def main_menu_options():
           "     Enter Q to quit.\n")
 
 
-def take_main_menu_input():
+def take_main_menu_input() -> None:
     """
     Takes input and runs chosen action.
     Flag for unselected/no option chosen used to exit the loop when chosen
     action finishes, returning to main menu run loop rather than option
     selection, which will reprint the menu options.
-     
+
     :return: None
     """
     possible_options = {
@@ -47,7 +47,7 @@ def take_main_menu_input():
             print("Invalid input.")
 
 
-def quit_app():
+def quit_app() -> None:
     sys.exit()
 
 
@@ -59,7 +59,7 @@ def quit_app():
     # edit individual student data (eg name spelling, change image)
 
 
-def run_main_menu():
+def run_main_menu() -> None:
     welcome_blurb()
 
     while True:
